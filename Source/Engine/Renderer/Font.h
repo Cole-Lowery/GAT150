@@ -7,8 +7,6 @@
 namespace viper {
 	class Font : public Resource {
 
-namespace viper {
-
 	public:
 		Font() = default;
 		~Font();
@@ -19,5 +17,5 @@ namespace viper {
 		friend class Text;
 
 		TTF_Font* m_ttfFont{ nullptr };
-};
+	};
 }

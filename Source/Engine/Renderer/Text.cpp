@@ -46,14 +46,4 @@ namespace viper {
 	}
 
 
-namespace viper {
-	}
-
-		SDL_DestroySurface(surface);
-	}
-
-
-
-
-
 }

@@ -1,7 +1,9 @@
 #include "Scene.h"
 #include "Actor.h"
+
 #include "Core/StringHelper.h"
 #include "Renderer/Renderer.h"
+
 
 namespace viper {
 	void Scene::Update(float dt) {

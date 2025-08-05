@@ -1,6 +1,6 @@
 
 #include "AudioSystem.h"
-#include "../Core/StringHelper.h"
+#include "Core/StringHelper.h"
 #include <fmod_errors.h>
 #include <iostream>
 

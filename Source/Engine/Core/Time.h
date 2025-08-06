@@ -1,4 +1,5 @@
 #pragma once
+
 #include <chrono>
 
 namespace viper {
@@ -17,20 +18,15 @@ namespace viper {
 		void Reset() { m_startTime = clock::now(); }
 
 		float GetTime() const { return m_time; }
-		float GetDeltaTime() const { return m_deltaTime * m_timeScale; }
-
-		void SetTimeScale(float scale) { m_timeScale = scale; }
+		float GetDeltaTime() const { return m_deltaTime; }
 
 	private:
 		float m_time = 0;
 		float m_deltaTime = 0;
-		float m_timeScale = 1.0f;
-
 
 		clock::time_point m_startTime;
 		clock::time_point m_frameTime;
 
 	};
-
 
 }

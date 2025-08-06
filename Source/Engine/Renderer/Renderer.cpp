@@ -1,11 +1,10 @@
 #include "Renderer.h"
-#include <iostream>
+#include "Texture.h"
 
 namespace viper {
-    bool Renderer::Initialize()
-    {
+    bool Renderer::Initialize() {
         if (!SDL_Init(SDL_INIT_VIDEO)) {
-            std::cerr << "SLD_Init Error: " << SDL_GetError() << std::endl;
+            std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
             return false;
         }
 
@@ -14,14 +13,14 @@ namespace viper {
             return false;
         }
 
-
         return true;
     }
 
     bool Renderer::CreateWindow(const std::string& name, int width, int height)
     {
-        m_width = width;
-        m_height = height;
+		m_width = width;
+		m_height = height;
+
 
         m_window = SDL_CreateWindow(name.c_str(), width, height, 0);
         if (m_window == nullptr) {
@@ -48,7 +47,7 @@ namespace viper {
 
     void Renderer::SetColor(float r, float g, float b, float a)
     {
-        SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
+		SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
     }
 
     void Renderer::Clear()
@@ -61,9 +60,7 @@ namespace viper {
         SDL_RenderPresent(m_renderer);
     }
 
-    void Renderer::Shutdown()
-    {
-
+    void Renderer::Shutdown() {
         TTF_Quit();
         SDL_DestroyRenderer(m_renderer);
         SDL_DestroyWindow(m_window);
@@ -78,6 +75,19 @@ namespace viper {
     void Renderer::DrawPoint(float x, float y)
     {
         SDL_RenderPoint(m_renderer, x, y);
+    }
+
+    void Renderer::DrawTexture(class Texture* texture, float x, float y)
+    {
+		vec2 size = texture->GetSize();
+
+        SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+		destRect.w = size.x;
+        destRect.h = size.y;
+
+        SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
     }
 
 }

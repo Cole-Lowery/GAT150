@@ -6,7 +6,7 @@
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source\Game">
-      <UniqueIdentifier>{e859fd74-b1d4-43c5-9d65-fd56e2076ae7}</UniqueIdentifier>
+      <UniqueIdentifier>{7f07f7b7-ca6d-4fe2-8ae5-e4080a2184dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,17 +22,11 @@
     <ClCompile Include="Game\SpaceGame.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameData.cpp">
+    <ClCompile Include="GameData.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Rocket.cpp">
+    <ClCompile Include="Rocket.cpp">
       <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\FireratePowerup.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Laser.cpp">
-      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,13 +39,11 @@
     <ClInclude Include="Game\SpaceGame.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameData.h">
+    <ClInclude Include="GameData.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Rocket.h">
+    <ClInclude Include="Rocket.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\FireratePowerup.h" />
-    <ClInclude Include="Game\Laser.h" />
   </ItemGroup>
 </Project>

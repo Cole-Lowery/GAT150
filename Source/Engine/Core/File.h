@@ -1,8 +1,10 @@
 #pragma once
+
 #include <string>
 #include <vector>
 
-namespace viper {
+namespace viper::file {
+
     std::string GetCurrentDirectory();
     bool SetCurrentDirectory(const std::string& path);
     std::string GetExtension(const std::string& path);
@@ -14,4 +16,5 @@ namespace viper {
 
     bool ReadTextFile(const std::string& path, std::string& content);
     bool WriteTextFile(const std::string& path, const std::string& content, bool append = false);
+
 }

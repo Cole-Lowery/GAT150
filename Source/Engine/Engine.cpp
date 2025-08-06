@@ -20,36 +20,30 @@ namespace viper {
 		m_input->Initialize();
 
 		m_audio = std::make_unique<viper::AudioSystem>();
-		m_audio->Inititalize();
+		m_audio->Initialize();
 
 		m_particleSystem = std::make_unique<viper::ParticleSystem>();
-		m_particleSystem->Initialize(1000);
-
-
-
+		m_particleSystem->Initialize(5000);
+		 
 		return true;
 	}
-	void Engine::Shutdown() {
 
+	void Engine::Shutdown() {
 		m_particleSystem->Shutdown();
 		m_audio->Shutdown();
 		m_input->Shutdown();
 		m_renderer->Shutdown();
 
 	}
-	void Engine::Update() {
 
+	void Engine::Update() {
 		m_time.Tick();
-		m_input->Update();
 		m_audio->Update();
+		m_input->Update();
 		m_particleSystem->Update(m_time.GetDeltaTime());
-		
 	}
 
 	void Engine::Draw() {
-		m_particleSystem->Draw(*m_renderer);
+		//
 	}
-
-
-
 }

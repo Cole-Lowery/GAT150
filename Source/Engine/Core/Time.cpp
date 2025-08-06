@@ -8,5 +8,4 @@ namespace viper {
 		m_deltaTime = std::chrono::duration<float>(now - m_frameTime).count();
 		m_frameTime = now;
 	}
-
 }

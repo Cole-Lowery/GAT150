@@ -1,42 +1,38 @@
 #include "Renderer.h"
 #include "Texture.h"
+#include "Core/Logger.h"
 
 namespace viper {
     bool Renderer::Initialize() {
         if (!SDL_Init(SDL_INIT_VIDEO)) {
-            std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
-
         if (!TTF_Init()) {
-            std::cerr << "TTF_Init Error: " << SDL_GetError() << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
-
         return true;
     }
 
     bool Renderer::CreateWindow(const std::string& name, int width, int height)
     {
-		m_width = width;
-		m_height = height;
-
+        m_width = width;
+        m_height = height;
 
         m_window = SDL_CreateWindow(name.c_str(), width, height, 0);
         if (m_window == nullptr) {
-            std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             SDL_Quit();
             return false;
         }
-
         m_renderer = SDL_CreateRenderer(m_window, NULL);
         if (m_renderer == nullptr) {
-            std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             SDL_DestroyWindow(m_window);
             SDL_Quit();
             return false;
         }
-
         return true;
     }
 
@@ -47,7 +43,7 @@ namespace viper {
 
     void Renderer::SetColor(float r, float g, float b, float a)
     {
-		SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
+        SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
     }
 
     void Renderer::Clear()
@@ -79,15 +75,14 @@ namespace viper {
 
     void Renderer::DrawTexture(class Texture* texture, float x, float y)
     {
-		vec2 size = texture->GetSize();
+        vec2 size = texture->GetSize();
 
         SDL_FRect destRect;
         destRect.x = x;
         destRect.y = y;
-		destRect.w = size.x;
+        destRect.w = size.x;
         destRect.h = size.y;
 
         SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
     }
-
 }

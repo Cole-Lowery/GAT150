@@ -16,6 +16,7 @@
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
 #include "Renderer/Texture.h"
+#include "Core/Logger.h"
 
 #include "Game/Player.h"
 #include "Game/SpaceGame.h"
@@ -25,6 +26,7 @@
 #include <memory>
 
 int main(int argc, char* argv[]) {
+    viper::Logger::SetEnabledLevels;
 
 	viper::file::SetCurrentDirectory("Assets");
 

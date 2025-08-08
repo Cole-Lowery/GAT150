@@ -16,14 +16,14 @@ namespace viper {
         SDL_Surface* surface = IMG_Load(filename.c_str());
         if (!surface)
         {
-            Logger::Error("SDL_Init Error: {}", SDL_GetError());
+			Logger::Error("IMG_Load Error: {}", SDL_GetError());
             return false;
         }
         m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
         SDL_DestroySurface(surface);
         if (!m_texture)
         {
-            Logger::Error("SDL_Init Error: {}", SDL_GetError());
+			Logger::Error("SDL_CreateTextureFromSurface Error: {}", SDL_GetError());
             return false;
         }
         return true;

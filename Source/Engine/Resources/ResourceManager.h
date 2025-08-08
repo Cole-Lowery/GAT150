@@ -34,7 +34,6 @@ namespace viper {
 			auto base = iter->second;
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			if (resource == nullptr) {
-				//std::cerr << "ResourceManager::Get: Could not cast resource to desired type: " << key << std::endl;
 				viper::Logger::Error("ResourceManager::Get: Could not cast resource to desired type: {}", key);
 			
 				return res_t<T>();
@@ -44,7 +43,6 @@ namespace viper {
 		}
 		res_t<T> resource = std::make_shared<T>();
 		if (resource->Load(key, std::forward<TArgs>(args)...) == false) {
-			//std::cerr << "ResourceManager::Get: Could not load resource: " << key << std::endl;
 			viper::Logger::Error("ResourceManager::Get: Could not load resource: {}", key);
 			return res_t<T>();
 		}

@@ -8,17 +8,20 @@ namespace viper {
             Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
+
         if (!TTF_Init()) {
             Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
+
         return true;
     }
 
     bool Renderer::CreateWindow(const std::string& name, int width, int height)
     {
-        m_width = width;
-        m_height = height;
+		m_width = width;
+		m_height = height;
+
 
         m_window = SDL_CreateWindow(name.c_str(), width, height, 0);
         if (m_window == nullptr) {
@@ -26,6 +29,7 @@ namespace viper {
             SDL_Quit();
             return false;
         }
+
         m_renderer = SDL_CreateRenderer(m_window, NULL);
         if (m_renderer == nullptr) {
             Logger::Error("SDL_Init Error: {}", SDL_GetError());
@@ -33,6 +37,7 @@ namespace viper {
             SDL_Quit();
             return false;
         }
+
         return true;
     }
 
@@ -43,7 +48,7 @@ namespace viper {
 
     void Renderer::SetColor(float r, float g, float b, float a)
     {
-        SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
+		SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
     }
 
     void Renderer::Clear()
@@ -75,14 +80,28 @@ namespace viper {
 
     void Renderer::DrawTexture(class Texture* texture, float x, float y)
     {
-        vec2 size = texture->GetSize();
+		vec2 size = texture->GetSize();
 
         SDL_FRect destRect;
         destRect.x = x;
         destRect.y = y;
-        destRect.w = size.x;
+		destRect.w = size.x;
         destRect.h = size.y;
 
         SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
     }
+
+    void Renderer::DrawTexture(Texture* texture, float x, float y, float angle, float scale)
+    {
+        vec2 size = texture->GetSize();
+
+        SDL_FRect destRect;
+        destRect.w = size.x * scale;
+        destRect.h = size.y * scale;
+        destRect.x = x - destRect.w * 0.5f;
+		destRect.y = y - destRect.h * 0.5f;
+
+        SDL_RenderTextureRotated(m_renderer, texture->m_texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
+    }
+
 }
